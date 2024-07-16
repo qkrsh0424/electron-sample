@@ -10,7 +10,7 @@ const coreIpcs = {
                 await initBrowser();
             } catch (err) {
                 return {
-                    message: 'failure'
+                    message: `failure: ${err}`
                 }
             }
 
