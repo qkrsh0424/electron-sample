@@ -61,8 +61,7 @@
             "perMachine": true,
             "allowToChangeInstallationDirectory": true,
             "language": 1042,
-            "shortcutName": "AutoOrder",
-            "include": "build/installer.nsh"
+            "shortcutName": "AutoOrder"
         },
         "directories": {
             "output": "./dist/"

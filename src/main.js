@@ -13,8 +13,9 @@ function createWindow() {
         height: 700,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
-            nodeIntegration: true,
-            contextIsolation: false
+            contextIsolation: false, // true로 설정
+            enableRemoteModule: false, // 가능한 경우 사용하지 않도록 설정
+            nodeIntegration: true // true 대신 false로 설정
         }
     });
 
