@@ -12,7 +12,7 @@ if (process.platform === 'win32' || process.platform === 'win64') {
     chromeExecutablePath = '/usr/bin/google-chrome';
 }
 
-async function initBrowser() {
+async function initBrowser(testMode = false) {
     if (browser) {
         console.log('기존 브라우저를 이용함.');
         return browser;
@@ -20,13 +20,12 @@ async function initBrowser() {
 
     browser = await puppeteer.launch({
         executablePath: chromeExecutablePath,
-        headless: false
+        headless: testMode ? false : true
     });
     console.log('새로운 브라우저가 생성됨.');
 
     return browser;
 }
-
 
 async function initPage() {
     if (page) {

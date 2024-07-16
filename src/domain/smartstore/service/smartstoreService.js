@@ -144,13 +144,15 @@ const smartstoreService = {
             }
         }
     },
-    searchOrderInformations: async (page, storeName) => {
+    searchOrderInformations: async (page, storeName, confirmNewOrderFlag) => {
         await moveStore(page, storeName);
 
         await delay(1000);
 
+        if (confirmNewOrderFlag) {
+            await smartstoreService.confirmNewOrder(page, storeName);
+        }
         // 발주건 수집 전 신규주문 발주확인작업
-        await smartstoreService.confirmNewOrder(page, storeName);
 
         await delay(1000);
 

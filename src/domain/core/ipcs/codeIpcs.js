@@ -7,7 +7,7 @@ const coreIpcs = {
     setting: (app) => {
         ipcMain.handle(`${ROOT_PATH}/create-browser`, async (event, arg) => {
             try {
-                await initBrowser();
+                await initBrowser(arg?.testMode || false);
             } catch (err) {
                 return {
                     message: `failure: ${err}`

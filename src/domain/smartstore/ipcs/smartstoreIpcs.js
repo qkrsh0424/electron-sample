@@ -58,6 +58,9 @@ const smartstoreIpcs = {
             const browser = await initBrowser();
             const page = await smartstoreServiceModule.createNewPage(browser);
 
+            const storeNameList = arg?.storeNameList || [];
+            const confirmNewOrderFlag = arg?.confirmNewOrderFlag || false;
+
             try {
                 console.log('smartstoreServiceModule.gotoUrl 시작')
                 await smartstoreServiceModule.gotoUrl(page, 'https://sell.smartstore.naver.com/#/naverpay/sale/delivery');
@@ -71,15 +74,18 @@ const smartstoreIpcs = {
 
             let result = [];
 
-            for (let i = 0; i < arg?.storeNameList?.length; i++) {
-                const storeName = arg?.storeNameList[i];
-                result.push({
-                    storeName: storeName,
-                    content: await smartstoreService.searchOrderInformations(page, storeName)
-                })
+            if (storeNameList?.length > 0) {
+                for (let i = 0; i < storeNameList?.length; i++) {
+                    const storeName = storeNameList[i];
+                    result.push({
+                        storeName: storeName,
+                        content: await smartstoreService.searchOrderInformations(page, storeName, confirmNewOrderFlag)
+                    })
+                }
             }
 
             await page.close();
+            
             return {
                 message: 'success',
                 content: result
