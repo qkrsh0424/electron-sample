@@ -158,10 +158,10 @@ const smartstoreService = {
 
         return await Promise.all([
             // searchOrderData('NEW_ORDER'),
-            searchOrderData('ORDER_CONFIRM'),
-            searchOrderData('SEND_DELAY'),
-            searchOrderData('SEND_CANCEL'),
-            searchOrderData('SEND_ADDRESS'),
+            searchOrderData('ORDER_CONFIRM', storeName),
+            searchOrderData('SEND_DELAY', storeName),
+            searchOrderData('SEND_CANCEL', storeName),
+            searchOrderData('SEND_ADDRESS', storeName),
         ])
     },
     confirmNewOrder: async (page, storeName) => {
@@ -204,7 +204,7 @@ const smartstoreService = {
     }
 }
 
-async function searchOrderData(orderStatus) {
+async function searchOrderData(orderStatus, storeName) {
     const browser = await initBrowser();
 
     const page = await browser.newPage();
@@ -234,7 +234,7 @@ async function searchOrderData(orderStatus) {
     await delay(1000);
 
     await selectView500(iframe);
-    const contentList = await extractOrderDatas(iframe, orderStatus);
+    const contentList = await extractOrderDatas(iframe, orderStatus, storeName);
 
     await page.close();
     return contentList;
@@ -317,7 +317,7 @@ async function selectView500(iframe) {
     console.log('500개씩 보기 선택 종료');
 }
 
-async function extractOrderDatas(iframe, orderStatus) {
+async function extractOrderDatas(iframe, orderStatus, storeName) {
     console.log('발주 데이터 추출 시작');
 
     const orderFormatList = orderFormatListDoc;
@@ -390,7 +390,8 @@ async function extractOrderDatas(iframe, orderStatus) {
         return {
             ...originDataForm,
             ...leftSideData,
-            ...rightSideDataList[leftSideIndex]
+            ...rightSideDataList[leftSideIndex],
+            storeName: storeName
         }
     })
     console.log('발주 데이터 추출 종료');

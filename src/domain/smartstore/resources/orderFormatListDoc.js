@@ -319,6 +319,11 @@ const orderFormatListDoc = [
         headerName:'배송희망일',
         isExtract: true,
     },
+    {
+        fieldName: 'storeName',
+        headerName:'스토어명',
+        isExtract: false,
+    },
 ]
 
 module.exports = {

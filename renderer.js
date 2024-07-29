@@ -1,4 +1,3 @@
-const { remote } = require('electron');
 const puppeteer = require('puppeteer');
 
 document.getElementById('scrapeButton').addEventListener('click', async () => {
