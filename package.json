@@ -1,6 +1,6 @@
 {
     "name": "sample1",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Electron sample1",
     "main": "./src/main.js",
     "scripts": {
@@ -37,7 +37,7 @@
         "xlsx": "^0.18.5"
     },
     "build": {
-        "productName": "AutoOrder",
+        "productName": "PiaarAutoOrder",
         "appId": "com.sample1.electron",
         "asar": true,
         "mac": {
@@ -46,7 +46,7 @@
             ]
         },
         "dmg": {
-            "title": "AutoOrder"
+            "title": "PiaarAutoOrder"
         },
         "win": {
             "target": [
@@ -60,12 +60,12 @@
             ]
         },
         "nsis": {
-            "guid": "AutoOrder",
+            "guid": "PiaarAutoOrder",
             "oneClick": false,
             "perMachine": true,
             "allowToChangeInstallationDirectory": true,
             "language": 1042,
-            "shortcutName": "AutoOrder"
+            "shortcutName": "PiaarAutoOrder"
         },
         "directories": {
             "output": "./dist/"
